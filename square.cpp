@@ -4,7 +4,7 @@
 
 using namespace std;
 
-/*virtuals*/
+/*as known virtuals but not really*/
 double Square::calculateArea() const
 {
 return static_cast<double>(edge)*edge;
@@ -29,17 +29,21 @@ string Square::calculateShapeName() const
 /*constructors*/
 Square::Square():Shape(),edge(0.0)
 {
-setTypeOfShape("square");
+    setTypeOfShape("square");
+    setType(5);
 }
 
 Square::Square(string name):Shape(name),edge(0)
 {
-setTypeOfShape("square");
+    setTypeOfShape("square");
+    setType(5);
 }
 
-Square::Square(string name,double edgE):Shape(name),edge(edgE)
+Square::Square(string name,double edgE)
+:Shape(name),edge(edgE)
 {
-setTypeOfShape("square");
+    setTypeOfShape("square");
+    setType(5);
 }
 
 
@@ -70,7 +74,8 @@ Square& Square::operator =(const Square& rightSide)
     return *this;
 }
 
-Square::Square(const Square& rightSide):Shape(rightSide.getNameOfShape()),edge(rightSide.getEdge())
+Square::Square(const Square& rightSide)
+:Shape(rightSide.getNameOfShape()),edge(rightSide.getEdge())
 {
 
 }

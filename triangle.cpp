@@ -5,7 +5,7 @@
 
 using namespace std;
 
-/*virtuals*/
+/*as known virtuals but not really*/
 double Triangle::calculateArea() const
 {
     double u=(edgeOne+edgeTwo+edgeThree)/2;
@@ -33,30 +33,35 @@ Triangle::Triangle()
 :Shape(),edgeOne(0),edgeTwo(0),edgeThree(0)
 {
     setTypeOfShape("triangle");
+    setType(6);
 }
 
 Triangle::Triangle(string name)
 :Shape(name),edgeOne(0),edgeTwo(0),edgeThree(0)
 {
     setTypeOfShape("triangle");
+    setType(6);
 }
 
 Triangle::Triangle(string name,double edge1)
 :Shape(name),edgeOne(edge1),edgeTwo(0),edgeThree(0)
 {
     setTypeOfShape("triangle");
+    setType(6);
 }
 
 Triangle::Triangle(string name,double edge1,double edge2)
 :Shape(name),edgeOne(edge1),edgeTwo(edge2),edgeThree(0)
 {
     setTypeOfShape("triangle");
+    setType(6);
 }
 
 Triangle::Triangle(string name,double edge1,double edge2,double edge3)
 :Shape(name),edgeOne(edge1),edgeTwo(edge2),edgeThree(edge3)
 {
     setTypeOfShape("triangle");
+    setType(6);
 }
 
 
@@ -109,7 +114,8 @@ Triangle& Triangle::operator =(const Triangle& rightSide)
     return *this;
 }
 
-Triangle::Triangle(const Triangle& rightSide):Shape(rightSide.getNameOfShape()),edgeOne(rightSide.getEdgeOne()),edgeTwo(rightSide.getEdgeTwo()),edgeThree(rightSide.getEdgeThree())
+Triangle::Triangle(const Triangle& rightSide)
+:Shape(rightSide.getNameOfShape()),edgeOne(rightSide.getEdgeOne()),edgeTwo(rightSide.getEdgeTwo()),edgeThree(rightSide.getEdgeThree())
 {
 
 }

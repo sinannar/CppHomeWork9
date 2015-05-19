@@ -4,25 +4,25 @@
 
 using namespace std;
 
-/*virtuals*/
+/*as known virtuals but not really*/
 double Shape::calculateArea() const
 {
-/*NO CODE NECESSARY*/
+
 }
 
 double Shape::calculatePerimeter() const
 {
-/*NO CODE NECESSARY*/
+
 }
 
 double Shape::calculateNumberOfCorners() const
 {
-/*NO CODE NECESSARY*/
+
 }
 
 string Shape::calculateShapeName() const
 {
-/*NO CODE NECESSARY*/
+
 }
 
 
@@ -30,11 +30,13 @@ string Shape::calculateShapeName() const
 Shape::Shape()
 {
     nameOfShape="-";
+    type=1;
 }
 
 Shape::Shape(string name)
 {
     nameOfShape=name;
+    type=1;
 }
 
 
@@ -49,6 +51,11 @@ string Shape::getTypeOfShape() const
     return typeOfShape;
 }
 
+int Shape::getType() const
+{
+    return type;
+}
+
 /*setter*/
 void Shape::setNameOfShape(string name)
 {
@@ -60,6 +67,10 @@ void Shape::setTypeOfShape(string type)
     typeOfShape=type;
 }
 
+void Shape::setType(int typE)
+{
+    type=typE;
+}
 /*big three*/
 Shape::~Shape()
 {
@@ -75,30 +86,6 @@ Shape& Shape::operator =(const Shape& rightSide)
 Shape::Shape(const Shape& rightSide):
 nameOfShape(rightSide.getNameOfShape())
 {
-/*NO MORE CODE NECESSARY*/
+
 }
 
-
-/**takes a vector of shape pointers a returns the total areas of the shapes**/
-double totalArea(vector<Shape*>&shapes)
-{
-    double totalArea=0;
-    for(int i=0;i<shapes.size();++i)
-    {
-        totalArea+=shapes[i]->calculateArea();
-    }
-    return totalArea;
-}
-
-
-/**takes a vector of shapes and returns the total perimeters of circles and ellipses**/
-double totalContiniousPerimeter(vector<Shape*>&shapes)
-{
-    double totalPerimeter=0;
-    for(int i=0;i<shapes.size();++i)
-    {
-        if( shapes[i]->getTypeOfShape() == "circle" || shapes[i]->getTypeOfShape() == "ellipse" )
-        totalPerimeter+=shapes[i]->calculatePerimeter();
-    }
-    return totalPerimeter;
-}

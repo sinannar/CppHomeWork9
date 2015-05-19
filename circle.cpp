@@ -4,7 +4,7 @@
 
 using namespace std;
 
-/*virtuals*/
+/*as known virtuals but not really*/
 double Circle::calculateArea() const
 {
     return (PI*radious*radious);
@@ -31,18 +31,21 @@ Circle::Circle()
 :Shape(),radious(0)
 {
     setTypeOfShape("circle");
+    setType(2);
 }
 
 Circle::Circle(string name)
 :Shape(name),radious(0)
 {
     setTypeOfShape("circle");
+    setType(2);
 }
 
 Circle::Circle(string name,double rad)
 :Shape(name),radious(rad)
 {
     setTypeOfShape("circle");
+    setType(2);
 }
 
 

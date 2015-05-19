@@ -4,7 +4,7 @@
 
 using namespace std;
 
-/*virtuals*/
+/*as known virtuals but not really*/
 double Rectangle::calculateArea() const
 {
     return static_cast<double>(edgeOne)*edgeTwo;
@@ -31,24 +31,28 @@ Rectangle::Rectangle()
 :Shape(),edgeOne(0),edgeTwo(0)
 {
     setTypeOfShape("rectangle");
+    setType(4);
 }
 
 Rectangle::Rectangle(string name)
 :Shape(name),edgeOne(0),edgeTwo(0)
 {
     setTypeOfShape("rectangle");
+    setType(4);
 }
 
 Rectangle::Rectangle(string name,double edge1)
 :Shape(name),edgeOne(edge1),edgeTwo(0)
 {
     setTypeOfShape("rectangle");
+    setType(4);
 }
 
 Rectangle::Rectangle(string name,double edge1,double edge2)
 :Shape(name),edgeOne(edge1),edgeTwo(edge2)
 {
     setTypeOfShape("rectangle");
+    setType(4);
 }
 
 

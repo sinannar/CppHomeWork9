@@ -13,11 +13,11 @@ class Shape
 {
     public:
 
-        /*virtuals*/
-        virtual double calculateArea() const =0;            //making abstact class
-        virtual double calculatePerimeter() const =0;       //making abstact class
-        virtual double calculateNumberOfCorners() const =0; //making abstact class
-        virtual string calculateShapeName() const =0;       //making abstact class
+        /*as known virtuals but not really*/
+        double calculateArea() const;            //making abstact class
+        double calculatePerimeter() const;       //making abstact class
+        double calculateNumberOfCorners() const; //making abstact class
+        string calculateShapeName() const;       //making abstact class
 
         /*constructers*/
         Shape();
@@ -26,10 +26,12 @@ class Shape
         /*getter*/
         string getNameOfShape() const;
         string getTypeOfShape() const;
+        int getType() const;
 
         /*setter*/
         void setNameOfShape(string name);
         void setTypeOfShape(string type);
+        void setType(int typE);
 
         /*big three*/
         ~Shape();
@@ -37,18 +39,21 @@ class Shape
         Shape(const Shape& rightSide);
 
     private:
-        string nameOfShape;//its special name of shape,like first eliptic
-        string typeOfShape;//its identifier of shape
+        string nameOfShape;
+        string typeOfShape;
+        int type;/*normally it is not necessary but i want to use int within comparison two variable*/
+        /*
+        SHAPE TYPES
+        1 -> shape
+        2 -> circle
+        3 -> ellipse
+        4 -> rectangle
+        5 -> square
+        6 -> triangle
+        */
 
 };
 
-/**takes a vector of shape pointers a returns the total areas of the shapes**/
-double totalArea(vector<Shape*>&shapes);
-/****************************************************************************/
-
-/**takes a vector of shapes and returns the total perimeters of circles and ellipses**/
-double totalContiniousPerimeter(vector<Shape*>&shapes);
-/*************************************************************************************/
 
 
 #endif

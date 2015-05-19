@@ -12,11 +12,11 @@ class Triangle : public Shape
 {
     public:
 
-        /*virtuals*/
-        virtual double calculateArea() const;
-        virtual double calculatePerimeter() const;
-        virtual double calculateNumberOfCorners() const;
-        virtual string calculateShapeName() const;
+        /*as known virtuals but not really*/
+        double calculateArea() const;
+        double calculatePerimeter() const;
+        double calculateNumberOfCorners() const;
+        string calculateShapeName() const;
 
         /*constructors*/
         Triangle();

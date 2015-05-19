@@ -13,8 +13,17 @@
 //#define TESTRECTANGLE
 //#define TESTSQUARE
 //#define TESTTRIANGLE
-//#define TESTINGPOLYMORPHISMVIAFUNCTION
+#define TESTINGPOLYMORPHISMVIAFUNCTION
 using namespace std;
+
+/**takes a vector of shape pointers a returns the total areas of the shapes**/
+double totalArea(vector<Shape*>&shapes);
+/****************************************************************************/
+
+/**takes a vector of shapes and returns the total perimeters of circles and ellipses**/
+double totalContiniousPerimeter(vector<Shape*>&shapes);
+/*************************************************************************************/
+
 
 int main()
 {
@@ -99,4 +108,71 @@ int main()
 #endif
 
     return 0;
+}
+
+/**takes a vector of shape pointers a returns the total areas of the shapes**/
+double totalArea(vector<Shape*>&shapes)
+{
+    double totalArea=0;
+    for(unsigned int i=0;i<shapes.size();++i)
+    {
+        switch(shapes[i]->getType())
+        {
+            case 1: //shape
+            {
+                totalArea+=0;
+            }break;
+
+            case 2: //circle
+            {
+                totalArea+= (reinterpret_cast<Circle*>(shapes[i]))->calculateArea();
+            }break;
+
+            case 3: //ellipse
+            {
+                totalArea+= (reinterpret_cast<Ellipse*>(shapes[i]))->calculateArea();
+            }break;
+
+            case 4: //rectangle
+            {
+                totalArea+= (reinterpret_cast<Rectangle*>(shapes[i]))->calculateArea();
+            }break;
+
+            case 5: //square
+            {
+                totalArea+= (reinterpret_cast<Square*>(shapes[i]))->calculateArea();
+            }break;
+
+            case 6: //triangle
+            {
+                totalArea+= (reinterpret_cast<Triangle*>(shapes[i]))->calculateArea();
+            }break;
+        }
+
+    }
+    return totalArea;
+}
+
+
+/**takes a vector of shapes and returns the total perimeters of circles and ellipses**/
+double totalContiniousPerimeter(vector<Shape*>&shapes)
+{
+    double totalPerimeter=0;
+    for(unsigned i=0;i<shapes.size();++i)
+    {
+        if(shapes[i]->getType()==2 || shapes[i]->getType()==3)
+        switch(shapes[i]->getType())
+        {
+            case 2: //circle
+            {
+                totalPerimeter+= (reinterpret_cast<Circle*>(shapes[i]))->calculatePerimeter();
+            }break;
+
+            case 3: //ellipse
+            {
+                totalPerimeter+= (reinterpret_cast<Ellipse*>(shapes[i]))->calculatePerimeter();
+            }break;
+        }
+    }
+    return totalPerimeter;
 }

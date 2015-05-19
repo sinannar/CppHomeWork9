@@ -4,7 +4,7 @@
 
 using namespace std;
 
-/*virtuals*/
+/*as known virtuals but not really*/
 double Ellipse::calculateArea() const
 {
     return (height*width*PI)/4;
@@ -31,24 +31,28 @@ Ellipse::Ellipse()
 :Shape(),height(0),width(0)
 {
     setTypeOfShape("ellipse");
+    setType(3);
 }
 
 Ellipse::Ellipse(string name)
 :Shape(name),height(0),width(0)
 {
     setTypeOfShape("ellipse");
+    setType(3);
 }
 
 Ellipse::Ellipse(string name,double high)
 :Shape(name),height(high),width(0)
 {
     setTypeOfShape("ellipse");
+    setType(3);
 }
 
 Ellipse::Ellipse(string name,double high,double widt)
 :Shape(name),height(high),width(widt)
 {
     setTypeOfShape("ellipse");
+    setType(3);
 }
 
 
