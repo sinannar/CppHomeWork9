@@ -13,11 +13,11 @@ class Shape
 {
     public:
 
-        /*as known virtuals but not really*/
-        double calculateArea() const;            //making abstact class
-        double calculatePerimeter() const;       //making abstact class
-        double calculateNumberOfCorners() const; //making abstact class
-        string calculateShapeName() const;       //making abstact class
+        /*virtuals*/
+        double calculateArea() ;            //making abstact class
+        double calculatePerimeter() ;       //making abstact class
+        double calculateNumberOfCorners() ; //making abstact class
+        string calculateShapeName() ;       //making abstact class
 
         /*constructers*/
         Shape();
@@ -26,34 +26,35 @@ class Shape
         /*getter*/
         string getNameOfShape() const;
         string getTypeOfShape() const;
-        int getType() const;
 
         /*setter*/
         void setNameOfShape(string name);
         void setTypeOfShape(string type);
-        void setType(int typE);
 
         /*big three*/
         ~Shape();
         Shape& operator =(const Shape& rightSide);
         Shape(const Shape& rightSide);
 
+    protected:
+        double (*_area)(void *);
+        double (*_perimeter)(void *);
+        double (*_corner)(void *);
+        string (*_name)(void *);
+
     private:
         string nameOfShape;
         string typeOfShape;
-        int type;/*normally it is not necessary but i want to use int within comparison two variable*/
-        /*
-        SHAPE TYPES
-        1 -> shape
-        2 -> circle
-        3 -> ellipse
-        4 -> rectangle
-        5 -> square
-        6 -> triangle
-        */
 
 };
 
+/**takes a vector of shape pointers a returns the total areas of the shapes**/
+double totalArea(vector<Shape*>&shapes);
+/****************************************************************************/
+
+/**takes a vector of shapes and returns the total perimeters of circles and ellipses**/
+double totalContiniousPerimeter(vector<Shape*>&shapes);
+/*************************************************************************************/
 
 
 #endif

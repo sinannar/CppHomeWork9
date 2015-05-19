@@ -12,11 +12,11 @@ class Rectangle : public Shape
 {
     public:
 
-        /*as known virtuals but not really*/
-        double calculateArea() const;
-        double calculatePerimeter() const;
-        double calculateNumberOfCorners() const;
-        string calculateShapeName() const;
+        /*virtuals*/
+        double calculateArea() ;
+        double calculatePerimeter() ;
+        double calculateNumberOfCorners() ;
+        string calculateShapeName() ;
 
         /*constructors*/
         Rectangle();

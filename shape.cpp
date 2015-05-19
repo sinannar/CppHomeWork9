@@ -4,25 +4,49 @@
 
 using namespace std;
 
-/*as known virtuals but not really*/
-double Shape::calculateArea() const
+/*WITHOUT virtual KEYWORD THEY ACTING LIKE virtual*/
+double Shape::calculateArea()
 {
-
+    /*
+    out function pointer show a function that is specify to calculate area
+    in this case,if points NULL,its basic shape and return 0
+    */
+    if(_area==NULL)
+        return 0;
+    return (_area(this));
 }
 
-double Shape::calculatePerimeter() const
+double Shape::calculatePerimeter()
 {
-
+    /*
+    out function pointer show a function that is specify to calculate perimeter
+    in this case,if points NULL,its basic shape and return 0
+    */
+    if(_perimeter==NULL)
+        return 0;
+    return (_perimeter(this));
 }
 
-double Shape::calculateNumberOfCorners() const
+double Shape::calculateNumberOfCorners()
 {
-
+    /*
+    out function pointer show a function that is specify to calculate corner
+    in this case,if points NULL,its basic shape and return 0
+    */
+    if(_corner==NULL)
+        return 0;
+    return (_corner(this));
 }
 
-string Shape::calculateShapeName() const
+string Shape::calculateShapeName()
 {
-
+    /*
+    out function pointer show a function that is specify to take name
+    in this case,if points NULL,its basic shape and return 0
+    */
+    if(_name==NULL)
+        return 0;
+    return (_name(this));
 }
 
 
@@ -30,13 +54,23 @@ string Shape::calculateShapeName() const
 Shape::Shape()
 {
     nameOfShape="-";
-    type=1;
+
+    /*here is the big deal when implementing polymorphism*/
+    _area=NULL;
+    _perimeter=NULL;
+    _corner=NULL;
+    _name=NULL;
 }
 
 Shape::Shape(string name)
 {
     nameOfShape=name;
-    type=1;
+
+    /*here is the big deal when implementing polymorphism*/
+    _area=NULL;
+    _perimeter=NULL;
+    _corner=NULL;
+    _name=NULL;
 }
 
 
@@ -51,11 +85,6 @@ string Shape::getTypeOfShape() const
     return typeOfShape;
 }
 
-int Shape::getType() const
-{
-    return type;
-}
-
 /*setter*/
 void Shape::setNameOfShape(string name)
 {
@@ -67,10 +96,6 @@ void Shape::setTypeOfShape(string type)
     typeOfShape=type;
 }
 
-void Shape::setType(int typE)
-{
-    type=typE;
-}
 /*big three*/
 Shape::~Shape()
 {
@@ -89,3 +114,27 @@ nameOfShape(rightSide.getNameOfShape())
 
 }
 
+
+/**takes a vector of shape pointers a returns the total areas of the shapes**/
+double totalArea(vector<Shape*>&shapes)
+{
+    double totalArea=0;
+    for(int i=0;i<shapes.size();++i)
+    {
+        totalArea+=shapes[i]->calculateArea();
+    }
+    return totalArea;
+}
+
+
+/**takes a vector of shapes and returns the total perimeters of circles and ellipses**/
+double totalContiniousPerimeter(vector<Shape*>&shapes)
+{
+    double totalPerimeter=0;
+    for(int i=0;i<shapes.size();++i)
+    {
+        if( shapes[i]->getTypeOfShape() == "circle" || shapes[i]->getTypeOfShape() == "ellipse" )
+        totalPerimeter+=shapes[i]->calculatePerimeter();
+    }
+    return totalPerimeter;
+}

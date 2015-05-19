@@ -5,24 +5,56 @@
 
 using namespace std;
 
-/*as known virtuals but not really*/
-double Triangle::calculateArea() const
+/*
+I need some global function to use because of function pointers
+in this case i use unnamed namespace
+*/
+namespace{
+
+    double myArea(void * ptr)
+    {
+        Triangle * p = (Triangle*) ptr;
+        return p->calculateArea();
+    }
+
+    double myPerimeter(void * ptr)
+    {
+        Triangle * p = (Triangle*) ptr;
+        return p->calculatePerimeter();
+    }
+
+    double myCorners(void * ptr)
+    {
+        Triangle * p = (Triangle*) ptr;
+        return p->calculateNumberOfCorners();
+    }
+
+    string myName(void * ptr)
+    {
+        Triangle * p = (Triangle*) ptr;
+        return p->calculateShapeName();
+    }
+
+}
+
+/*virtuals*/
+double Triangle::calculateArea()
 {
     double u=(edgeOne+edgeTwo+edgeThree)/2;
     return sqrt( u*(u-edgeOne)*(u-edgeTwo)*(u-edgeThree) );
 }
 
-double Triangle::calculatePerimeter() const
+double Triangle::calculatePerimeter()
 {
     return edgeOne+edgeTwo+edgeThree;
 }
 
-double Triangle::calculateNumberOfCorners() const
+double Triangle::calculateNumberOfCorners()
 {
     return 3.0;
 }
 
-string Triangle::calculateShapeName() const
+string Triangle::calculateShapeName()
 {
     return (getNameOfShape());
 }
@@ -33,35 +65,60 @@ Triangle::Triangle()
 :Shape(),edgeOne(0),edgeTwo(0),edgeThree(0)
 {
     setTypeOfShape("triangle");
-    setType(6);
+
+    /*here is the big deal when implementing polymorphism*/
+    _area = myArea;
+    _perimeter = myPerimeter;
+    _corner=myCorners;
+    _name=myName;
 }
 
 Triangle::Triangle(string name)
 :Shape(name),edgeOne(0),edgeTwo(0),edgeThree(0)
 {
     setTypeOfShape("triangle");
-    setType(6);
+
+    /*here is the big deal when implementing polymorphism*/
+    _area = myArea;
+    _perimeter = myPerimeter;
+    _corner=myCorners;
+    _name=myName;
 }
 
 Triangle::Triangle(string name,double edge1)
 :Shape(name),edgeOne(edge1),edgeTwo(0),edgeThree(0)
 {
     setTypeOfShape("triangle");
-    setType(6);
+
+    /*here is the big deal when implementing polymorphism*/
+    _area = myArea;
+    _perimeter = myPerimeter;
+    _corner=myCorners;
+    _name=myName;
 }
 
 Triangle::Triangle(string name,double edge1,double edge2)
 :Shape(name),edgeOne(edge1),edgeTwo(edge2),edgeThree(0)
 {
     setTypeOfShape("triangle");
-    setType(6);
+
+    /*here is the big deal when implementing polymorphism*/
+    _area = myArea;
+    _perimeter = myPerimeter;
+    _corner=myCorners;
+    _name=myName;
 }
 
 Triangle::Triangle(string name,double edge1,double edge2,double edge3)
 :Shape(name),edgeOne(edge1),edgeTwo(edge2),edgeThree(edge3)
 {
     setTypeOfShape("triangle");
-    setType(6);
+
+    /*here is the big deal when implementing polymorphism*/
+    _area = myArea;
+    _perimeter = myPerimeter;
+    _corner=myCorners;
+    _name=myName;
 }
 
 

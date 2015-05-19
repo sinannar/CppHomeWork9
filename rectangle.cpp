@@ -4,23 +4,55 @@
 
 using namespace std;
 
-/*as known virtuals but not really*/
-double Rectangle::calculateArea() const
-{
-    return static_cast<double>(edgeOne)*edgeTwo;
+/*
+I need some global function to use because of function pointers
+in this case i use unnamed namespace
+*/
+namespace{
+
+    double myArea(void * ptr)
+    {
+        Rectangle * p = (Rectangle*) ptr;
+        return p->calculateArea();
+    }
+
+    double myPerimeter(void * ptr)
+    {
+        Rectangle * p = (Rectangle*) ptr;
+        return p->calculatePerimeter();
+    }
+
+    double myCorners(void * ptr)
+    {
+        Rectangle * p = (Rectangle*) ptr;
+        return p->calculateNumberOfCorners();
+    }
+
+    string myName(void * ptr)
+    {
+        Rectangle * p = (Rectangle*) ptr;
+        return p->calculateShapeName();
+    }
+
 }
 
-double Rectangle::calculatePerimeter() const
+/*WITHOUT virtual KEYWORD THEY ACTING LIKE virtual*/
+double Rectangle::calculateArea()
+{
+    return edgeOne*edgeTwo;
+}
+
+double Rectangle::calculatePerimeter()
 {
     return (edgeOne+edgeTwo)*2.0;
 }
 
-double Rectangle::calculateNumberOfCorners() const
+double Rectangle::calculateNumberOfCorners()
 {
     return 4.0;
 }
 
-string Rectangle::calculateShapeName() const
+string Rectangle::calculateShapeName()
 {
     return ("rectanglistic "+getNameOfShape());
 }
@@ -31,28 +63,48 @@ Rectangle::Rectangle()
 :Shape(),edgeOne(0),edgeTwo(0)
 {
     setTypeOfShape("rectangle");
-    setType(4);
+
+    /*here is the big deal when implementing polymorphism*/
+    _area = myArea;
+    _perimeter = myPerimeter;
+    _corner=myCorners;
+    _name=myName;
 }
 
 Rectangle::Rectangle(string name)
 :Shape(name),edgeOne(0),edgeTwo(0)
 {
     setTypeOfShape("rectangle");
-    setType(4);
+
+    /*here is the big deal when implementing polymorphism*/
+    _area = myArea;
+    _perimeter = myPerimeter;
+    _corner=myCorners;
+    _name=myName;
 }
 
 Rectangle::Rectangle(string name,double edge1)
 :Shape(name),edgeOne(edge1),edgeTwo(0)
 {
     setTypeOfShape("rectangle");
-    setType(4);
+
+    /*here is the big deal when implementing polymorphism*/
+    _area = myArea;
+    _perimeter = myPerimeter;
+    _corner=myCorners;
+    _name=myName;
 }
 
 Rectangle::Rectangle(string name,double edge1,double edge2)
 :Shape(name),edgeOne(edge1),edgeTwo(edge2)
 {
     setTypeOfShape("rectangle");
-    setType(4);
+
+    /*here is the big deal when implementing polymorphism*/
+    _area = myArea;
+    _perimeter = myPerimeter;
+    _corner=myCorners;
+    _name=myName;
 }
 
 
