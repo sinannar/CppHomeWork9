@@ -1,2 +1,6 @@
 In this work, I use inheritance with 'virtual' keyword in c++ and then implement same system without 'virtual' keyword
 You should switch to branches to see codes. Main branches has no code at all.
+
+Normal-Inheritance: I just use inheritance come with cpp. To see how what is normal in cpp
+Inheritance-with-Switch-Case: I implement the inheritance with basic switch case
+Inheritance-with-Function-Pointers: I implement the inheritance with function pointers
